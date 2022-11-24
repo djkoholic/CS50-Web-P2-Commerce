@@ -1,0 +1,19 @@
+{% extends "auctions/layout.html" %}:
+
+{% block body %}
+    <div><h2>Listing: {{listing.title}}</h2></div>
+    <div><img src="{{listing.image}}" style="height:300px;width:500px;" /></div>
+    <div>{{listing.description}}</div>
+    <div><h5>Starting bid: ${{listing.price}}</h5></div>
+    <div><h5>Highest bid: ${{highest_bid.amount}}</h5></div>
+    <div>{{total_bids}} bid(s) placed so far</div>
+    <div>
+        <form action="{% url 'listing' listing.id %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Bid" name="amount"/>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Place Bid">
+        </form>
+    </div>
+{% endblock %}
